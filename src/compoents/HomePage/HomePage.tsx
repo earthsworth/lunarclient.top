@@ -14,9 +14,15 @@ import {useTranslation} from "react-i18next";
 import Divider from "../Divider/Divider.tsx";
 import ShowcaseCard from "./ShowcaseCard.tsx";
 import SocialLinks from "../SocialLinks/SocialLinks.tsx";
+import {useNavigate} from "react-router";
 
 function HomePage() {
     const {t} = useTranslation();
+    const navigate = useNavigate();
+
+    const handlePineapple = () => {
+        navigate("/pineapple");
+    }
 
     return (<>
         <div
@@ -94,10 +100,14 @@ function HomePage() {
 
         <div
             className={"flex flex-col items-center justify-center align-bottom mt-10 w-full shadow-xl bg-gray-300 dark:bg-[#1c1e21] rounded-t"}>
-            <label>Celestial Launcher by cubewhy & contributors</label>
-            <label>Not affiliated with Moonsworth or Mojang</label>
-            <label>Disclaimer: Celestial is not "cracked Lunarclient", we will not develop similar features in the
+            <label className={"align-middle"}>Disclaimer: Celestial is not "cracked Lunarclient", we will not
+                develop similar features in the
                 future</label>
+            <div className={"flex flex-row w-full items-center justify-between px-4"}>
+                <label>Celestial Launcher by cubewhy & contributors</label>
+                <label className={"text-gray-300 dark:text-[#1c1e21] cursor-pointer"} onClick={handlePineapple}>This server is made in pineapples.</label>
+                <label>Not affiliated with Moonsworth or Mojang</label>
+            </div>
         </div>
     </>);
 }
