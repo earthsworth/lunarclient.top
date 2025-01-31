@@ -1,0 +1,5 @@
+@import "tailwindcss";
+
+body {
+    @apply bg-white m-0 dark:bg-[#222] dark:text-white transition-all duration-200 ease-in-out transform-gpu;
+}
