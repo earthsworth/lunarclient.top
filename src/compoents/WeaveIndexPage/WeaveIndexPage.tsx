@@ -44,8 +44,9 @@ function WeaveIndexPage(props: Props) {
     }, []);
 
     useEffect(() => {
+        if (weaveIndex) return; // avoid load twice in strict mode
         fetchDatasource()
-    });
+    }, [props.dataSource]);
 
     const handleGoTop = () => {
         window.scrollTo({
