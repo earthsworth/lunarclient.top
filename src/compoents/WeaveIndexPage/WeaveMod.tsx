@@ -28,6 +28,9 @@ function WeaveMod(props: Props) {
         </div>);
     }
     return (<>
+        {props.project.newWeave && <div className={"absolute z-40 flex items-center justify-center text-amber-200 rounded p-1 overflow-hidden -rotate-45 m-5 font-bold select-none"}>
+            <span>Weave 1.0</span>
+        </div>}
         <div
             className={"flex flex-col justify-around items-center transition hover:-translate-y-3 rounded-xl shadow-xl backdrop-blur-2xl dark:bg-[rgba(34,34,50,0.4)] p-4 text-wrap w-80 min-h-60"}>
             <label className={"text-xl"}>{props.project.name}</label>

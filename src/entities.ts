@@ -21,4 +21,5 @@ export interface WeaveIndexProject {
     description: string;
     url: string;
     repository: string;
+    newWeave: boolean;
 }
