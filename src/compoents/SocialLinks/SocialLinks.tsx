@@ -4,7 +4,10 @@ import {FaBilibili} from "react-icons/fa6";
 import CircleIcon from "../CircleIcon/CircleIcon.tsx";
 
 interface Props {
-    border?: boolean
+    border?: boolean,
+    iconClass?: string,
+    containerClass?: string,
+    iconSize?: number
 }
 
 function SocialLinks(props: Props) {

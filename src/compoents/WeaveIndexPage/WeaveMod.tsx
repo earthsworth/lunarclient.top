@@ -8,7 +8,7 @@ interface Props {
 function WeaveMod(props: Props) {
     if (!props.project) {
         return (<div
-            className={"flex flex-col justify-center gap-2 items-center rounded-xl shadow-xl backdrop-blur-2xl dark:bg-[rgba(34,34,50,0.4)] p-4 text-wrap w-80 min-h-60"}>
+            className={"flex flex-col justify-center gap-2 items-center rounded-xl shadow-xl backdrop-blur-2xl dark:bg-gray-950/80 p-4 text-wrap w-80 min-h-60"}>
             <div className={"bg-gray-200 w-60 h-2 rounded-xl"}></div>
             <div className={"flex flex-row justify-between gap-2"}>
                 <div className={"bg-gray-200 w-40 h-2 rounded-xl"}></div>
@@ -32,7 +32,7 @@ function WeaveMod(props: Props) {
             <span>Weave 1.0</span>
         </div>}
         <div
-            className={"flex flex-col justify-around items-center transition hover:-translate-y-3 rounded-xl shadow-xl backdrop-blur-2xl dark:bg-[rgba(34,34,50,0.4)] p-4 text-wrap w-80 min-h-60"}>
+            className={"flex flex-col justify-around items-center transition hover:-translate-y-3 rounded-xl shadow-xl backdrop-blur-2xl dark:bg-gray-950/80 p-4 text-wrap w-80 min-h-60"}>
             <label className={"text-xl"}>{props.project.name}</label>
             {props.project.description &&
                 <label className={"text-gray-500 dark:text-gray-400"}>{props.project.description}</label>}

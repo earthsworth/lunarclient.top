@@ -12,6 +12,7 @@ const resources = {
             "nav.download": "Download",
             "nav.weave": "Weave Index",
             "nav.docs": "Docs",
+            "nav.sponsor": "Sponsor",
             "btn.download": "DOWNLOAD",
             "home.subtitle": "Open Source & Free",
             "home.motd1": "Yet Another Lunar Client Launcher",
@@ -58,7 +59,19 @@ const resources = {
             "weave.loading": "Loading...",
             "weave.old": "Switch to the old experience",
             "weave.update-time": "Update time:",
-            "weave.disclaimer": "The mods on this page may have cheating functions. If you are banned, it has nothing to do with the developers of Celestial. We do not guarantee that all mods can work properly. If you encounter problems, please ask the mod developer."
+            "weave.disclaimer": "The mods on this page may have cheating functions. If you are banned, it has nothing to do with the developers of Celestial. We do not guarantee that all mods can work properly. If you encounter problems, please ask the mod developer.",
+            "sponsor.title": "Sponsor LunarCN",
+            "sponsor.subtitle": "Your support keeps the LunarCN community vibrant",
+            "sponsor.paymentMethods": "Payment Methods",
+            "sponsor.wechat": "WeChat Pay",
+            "sponsor.alipay": "Alipay",
+            "sponsor.sponsor": "Sponsor Now",
+            "sponsor.leaderboard": "Sponsor Leaderboard",
+            "sponsor.name": "Name",
+            "sponsor.amount": "Amount",
+            "sponsor.message": "Message",
+            "sponsor.support": "Join Our Community"
+
         }
     },
     zh: {
@@ -67,6 +80,7 @@ const resources = {
             "nav.download": "下载",
             "nav.weave": "Weave插件市场",
             "nav.docs": "文档",
+            "nav.sponsor": "赞助",
             "btn.download": "下载",
             "home.subtitle": "开源免费",
             "home.motd1": "另一个LunarClient启动器",
@@ -113,7 +127,18 @@ const resources = {
             "weave.loading": "加载中...",
             "weave.old": "切换到旧版",
             "weave.update-time": "更新时间",
-            "weave.disclaimer": "本页面的Mod可能带有作弊功能,如果你被封禁与Celestial的开发者无关. 我们不确保所有Mod都可以正常工作,如果遇到问题请询问Mod开发者"
+            "weave.disclaimer": "本页面的Mod可能带有作弊功能,如果你被封禁与Celestial的开发者无关. 我们不确保所有Mod都可以正常工作,如果遇到问题请询问Mod开发者",
+            "sponsor.title": "赞助LunarCN",
+            "sponsor.subtitle": "您的赞助对LunarCN社区的发展至关重要",
+            "sponsor.paymentMethods": "赞助方式",
+            "sponsor.wechat": "微信支付",
+            "sponsor.alipay": "支付宝",
+            "sponsor.sponsor": "现在赞助",
+            "sponsor.leaderboard": "赞助榜",
+            "sponsor.name": "名字",
+            "sponsor.amount": "金额",
+            "sponsor.message": "留言",
+            "sponsor.support": "加入我们"
         }
     }
 };
