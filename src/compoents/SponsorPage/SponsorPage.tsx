@@ -6,6 +6,7 @@ import wechatQR from '../../assets/wechat-qr.webp';
 import alipayQR from '../../assets/alipay-qr.webp';
 import paypalQR from '../../assets/paypal-qr.webp';
 import TonQR from '../../assets/TON-qr.webp';
+import USDTTRC20QR from '../../assets/USDT-TRC20-qr.webp';
 import Divider from '../Divider/Divider.tsx';
 import SocialLinks from '../SocialLinks/SocialLinks.tsx';
 
@@ -69,6 +70,11 @@ function SponsorPage() {
                             title="TON"
                             img={TonQR}
                             alt="TON QR"
+                        />
+                        <PaymentMethod
+                            title="USDT(TRC20)"
+                            img={USDTTRC20QR}
+                            alt="USDT TRC20 QR"
                         />
                     </div>
                 </section>
