@@ -5,7 +5,7 @@ import 'aos/dist/aos.css';
 import wechatQR from '../../assets/wechat-qr.webp';
 import alipayQR from '../../assets/alipay-qr.webp';
 import paypalQR from '../../assets/paypal-qr.webp';
-import usdtTonQR from '../../assets/usdt-TON-qr.webp';
+import TonQR from '../../assets/TON-qr.webp';
 import Divider from '../Divider/Divider.tsx';
 import SocialLinks from '../SocialLinks/SocialLinks.tsx';
 
@@ -66,9 +66,9 @@ function SponsorPage() {
                             link="https://paypal.me/hzqme"
                         />
                         <PaymentMethod
-                            title="USDT(TON)"
-                            img={usdtTonQR}
-                            alt="USDT QR"
+                            title="TON"
+                            img={TonQR}
+                            alt="TON QR"
                         />
                     </div>
                 </section>
