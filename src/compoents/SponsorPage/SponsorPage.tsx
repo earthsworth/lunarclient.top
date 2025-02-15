@@ -97,6 +97,11 @@ function SponsorPage() {
                                 <td className="px-6 py-4 text-emerald-400 font-medium">$4.72</td>
                                 <td className="px-6 py-4 text-slate-400">Keep the project alive!</td>
                             </tr>
+<tr className="hover:bg-slate-700/20 transition-colors">
+                                <td className="px-6 py-4 text-slate-200">怯珐</td>
+                                <td className="px-6 py-4 text-emerald-400 font-medium">￥50</td>
+                                <td className="px-6 py-4 text-slate-400">加油!</td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>
