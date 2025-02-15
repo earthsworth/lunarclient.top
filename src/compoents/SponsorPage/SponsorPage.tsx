@@ -103,7 +103,7 @@ function SponsorPage() {
                                 <td className="px-6 py-4 text-slate-400">加油!</td>
                             </tr>
                             <tr className="hover:bg-slate-700/20 transition-colors">
-                                <td className="px-6 py-4 text-slate-200">匿名</td>
+                                <td className="px-6 py-4 text-slate-200">甘城猫猫喵</td>
                                 <td className="px-6 py-4 text-emerald-400 font-medium">￥10</td>
                                 <td className="px-6 py-4 text-slate-400">非常好👍</td>
                             </tr>                                
