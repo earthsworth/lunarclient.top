@@ -50,7 +50,7 @@ function AnalysisPage() {
 
     useEffect(() => {
         // load data
-        axios.get<ApiResponse>("http://ws.lunarclient.top/api/analysis?after=0").then(response => {
+        axios.get<ApiResponse>("https://ws.lunarclient.top/api/analysis?after=0").then(response => {
             setData(response.data)
         }).catch(err => {
             console.error(err);
