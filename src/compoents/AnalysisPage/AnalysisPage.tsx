@@ -38,6 +38,8 @@ interface ApiResponse {
     message: string;
 }
 
+
+
 function AnalysisPage() {
     const { t } = useTranslation();
     const [data, setData] = useState<ApiResponse | null>(null);
@@ -137,8 +139,6 @@ function AnalysisPage() {
         ],
     };
 
-    // @ts-ignore
-    // @ts-ignore
     const options: ChartOptions<'line'> = {
         responsive: true,
         maintainAspectRatio: false,
@@ -163,7 +163,7 @@ function AnalysisPage() {
                 color: '#fff',
                 font: {
                     size: 20,
-                    weight: '600'
+                    weight: 600
                 }
             },
             tooltip: {
