@@ -13,6 +13,7 @@ const resources = {
             "nav.weave": "Weave Index",
             "nav.docs": "Docs",
             "nav.sponsor": "Sponsor",
+            "nav.analysis": "Analysis",
             "btn.download": "DOWNLOAD",
             "home.subtitle": "Open Source & Free",
             "home.motd1": "Yet Another Lunar Client Launcher",
@@ -70,8 +71,8 @@ const resources = {
             "sponsor.name": "Name",
             "sponsor.amount": "Amount",
             "sponsor.message": "Message",
-            "sponsor.support": "Join Our Community"
-
+            "sponsor.support": "Join Our Community",
+            "analysis.title": "User Analysis",
         }
     },
     zh: {
@@ -81,6 +82,7 @@ const resources = {
             "nav.weave": "Weave插件市场",
             "nav.docs": "文档",
             "nav.sponsor": "赞助",
+            "nav.analysis": "公开统计数据",
             "btn.download": "下载",
             "home.subtitle": "开源免费",
             "home.motd1": "另一个LunarClient启动器",
@@ -138,7 +140,8 @@ const resources = {
             "sponsor.name": "名字",
             "sponsor.amount": "金额",
             "sponsor.message": "留言",
-            "sponsor.support": "加入我们"
+            "sponsor.support": "加入我们",
+            "analysis.title": "用户统计数据"
         }
     }
 };

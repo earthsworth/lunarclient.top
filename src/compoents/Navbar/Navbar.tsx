@@ -23,7 +23,8 @@ function Navbar() {
         { name: t('nav.download'), href: "/download" },
         { name: t('nav.weave'), href: "/weave" },
         { name: t('nav.docs'), href: "https://github.com/CubeWhyMC/celestial/wiki" },
-        { name: t('nav.sponsor'), href: "/sponsor" }
+        { name: t('nav.sponsor'), href: "/sponsor" },
+        { name: t('nav.analysis'), href: "/analysis" }
     ];
 
     return (

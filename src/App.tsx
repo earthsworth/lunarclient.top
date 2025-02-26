@@ -6,6 +6,7 @@ import DownloadPage from "./compoents/DownloadPage/DownloadPage.tsx";
 import WeaveIndexPage from "./compoents/WeaveIndexPage/WeaveIndexPage.tsx";
 import PineapplePage from "./compoents/PineapplePage/PineapplePage.tsx";
 import SponsorPage from "./compoents/SponsorPage/SponsorPage.tsx";
+import AnalysisPage from "./compoents/AnalysisPage/AnalysisPage.tsx";
 
 function App() {
     return (<>
@@ -17,6 +18,7 @@ function App() {
                 <Route path="weave" element={<WeaveIndexPage dataSource={"https://raw.githubusercontent.com/CubeWhyMC/weave-index/refs/heads/master/index-by-developers.json"}/>}/>
                 <Route path="pineapple" element={<PineapplePage/>}/>
                 <Route path="sponsor" element={<SponsorPage/>}/>
+                <Route path="analysis" element={<AnalysisPage/>}/>
             </Routes>
         </HashRouter>
     </>);
