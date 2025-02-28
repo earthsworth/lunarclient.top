@@ -38,8 +38,6 @@ interface ApiResponse {
     message: string;
 }
 
-
-
 function AnalysisPage() {
     const { t } = useTranslation();
     const [data, setData] = useState<ApiResponse | null>(null);
@@ -48,18 +46,34 @@ function AnalysisPage() {
     useEffect(() => {
         axios.get<ApiResponse>("https://ws.lunarclient.top/api/analysis?after=0")
             .then(response => {
-                setData(response.data);
+                // 按时间戳升序排列（旧 -> 新）
+                const sortedData = response.data.data.sort((a, b) => a.timestamp - b.timestamp);
+
+                console.log("数据时间范围验证:", {
+                    最早时间: new Date(sortedData[0].timestamp * 1000).toLocaleString(),
+                    最新时间: new Date(sortedData[sortedData.length - 1].timestamp * 1000).toLocaleString()
+                });
+
+                setData({
+                    ...response.data,
+                    data: sortedData
+                });
                 setLoading(false);
             })
             .catch(err => {
-                console.error(err);
+                console.error("API Error:", err);
                 setLoading(false);
             });
     }, []);
 
     const formatTimestamp = (timestamp: number): string => {
         const date = new Date(timestamp * 1000);
-        return date.toLocaleTimeString();
+        return date.toLocaleTimeString([], {
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: false,
+            timeZone: 'Asia/Shanghai'
+        });
     };
 
     if (loading) {
@@ -92,12 +106,29 @@ function AnalysisPage() {
         );
     }
 
+    if (!data?.data?.length) {
+        return (
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 flex items-center justify-center"
+            >
+                <div className="text-gray-400 text-xl">
+                    {t('analysis.no_data') || 'No data available'}
+                </div>
+            </motion.div>
+        );
+    }
+
+    // 获取最新数据（排序后的最后一个元素）
+    const latestData = data.data[data.data.length - 1];
+
     const chartData = {
-        labels: data?.data.map((item) => formatTimestamp(item.timestamp)) || [],
+        labels: data.data.map((item) => formatTimestamp(item.timestamp)),
         datasets: [
             {
-                label: 'User Count',
-                data: data?.data.map((item) => item.userCount) || [],
+                label: t('analysis.current_users') || 'User Count',
+                data: data.data.map((item) => item.userCount),
                 borderColor: 'rgba(75, 192, 192, 1)',
                 borderWidth: 2,
                 tension: 0.4,
@@ -112,8 +143,8 @@ function AnalysisPage() {
                 }
             },
             {
-                label: 'Online Count',
-                data: data?.data.map((item) => item.onlineCount) || [],
+                label: t('analysis.online_now') || 'Online Count',
+                data: data.data.map((item) => item.onlineCount),
                 borderColor: 'rgba(153, 102, 255, 1)',
                 borderWidth: 2,
                 borderDash: [5, 5],
@@ -125,8 +156,8 @@ function AnalysisPage() {
                 fill: false,
             },
             {
-                label: 'Web User Count',
-                data: data?.data.map((item) => item.webUserCount) || [],
+                label: t('analysis.web_users') || 'Web Users',
+                data: data.data.map((item) => item.webUserCount),
                 borderColor: 'rgba(255, 159, 64, 1)',
                 borderWidth: 2,
                 tension: 0.4,
@@ -176,7 +207,7 @@ function AnalysisPage() {
                 usePointStyle: true,
                 callbacks: {
                     title: (context) => {
-                        const rawData = data?.data[context[0].dataIndex];
+                        const rawData = data.data[context[0].dataIndex];
                         return rawData ? new Date(rawData.timestamp * 1000).toLocaleString() : '';
                     },
                     label: (context) => {
@@ -221,25 +252,21 @@ function AnalysisPage() {
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
-                        {data?.data[0] && (
-                            <>
-                                <StatCard
-                                    label="Current Users"
-                                    value={data.data[0].userCount}
-                                    color="rgb(75, 192, 192)"
-                                />
-                                <StatCard
-                                    label="Online Now"
-                                    value={data.data[0].onlineCount}
-                                    color="rgb(153, 102, 255)"
-                                />
-                                <StatCard
-                                    label="Web Users"
-                                    value={data.data[0].webUserCount}
-                                    color="rgb(255, 159, 64)"
-                                />
-                            </>
-                        )}
+                        <StatCard
+                            label={t('analysis.current_users') || 'Current Users'}
+                            value={latestData.userCount}
+                            color="rgb(75, 192, 192)"
+                        />
+                        <StatCard
+                            label={t('analysis.online_now') || 'Online Now'}
+                            value={latestData.onlineCount}
+                            color="rgb(153, 102, 255)"
+                        />
+                        <StatCard
+                            label={t('analysis.web_users') || 'Web Users'}
+                            value={latestData.webUserCount}
+                            color="rgb(255, 159, 64)"
+                        />
                     </div>
                 </div>
             </div>

@@ -73,6 +73,9 @@ const resources = {
             "sponsor.message": "Message",
             "sponsor.support": "Join Our Community",
             "analysis.title": "User Analysis",
+            "analysis.current_users":"Users Count",
+            "analysis.online_now":"Online Users Count",
+            "analysis.web_users":"Web Users Count"
         }
     },
     zh: {
@@ -141,7 +144,11 @@ const resources = {
             "sponsor.amount": "金额",
             "sponsor.message": "留言",
             "sponsor.support": "加入我们",
-            "analysis.title": "用户统计数据"
+            "analysis.title": "用户统计数据",
+            "analysis.current_users":"用户总数",
+            "analysis.online_now":"在线用户",
+            "analysis.web_users":"网页用户"
+
         }
     }
 };

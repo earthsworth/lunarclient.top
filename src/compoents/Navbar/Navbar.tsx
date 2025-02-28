@@ -1,87 +1,88 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo, lazy, Suspense } from "react";
 import { useTranslation } from "react-i18next";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { motion, AnimatePresence } from "framer-motion";
 import NavbarLink from "./NavbarLink.tsx";
-import SocialLinks from "../SocialLinks/SocialLinks.tsx";
+
+const SocialLinks = lazy(() => import("../SocialLinks/SocialLinks.tsx"));
 
 function Navbar() {
     const { t } = useTranslation();
     const [isOpen, setIsOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
 
+    // 优化滚动监听
     useEffect(() => {
+        let ticking = false;
         const handleScroll = () => {
-            setIsScrolled(window.scrollY > 50);
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    setIsScrolled(window.scrollY > 50);
+                    ticking = false;
+                });
+                ticking = true;
+            }
         };
-        window.addEventListener("scroll", handleScroll);
+        window.addEventListener("scroll", handleScroll, { passive: true });
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
-    const navigation = [
+    // 缓存导航数据
+    const navigation = useMemo(() => [
         { name: t('nav.home'), href: "/" },
         { name: t('nav.download'), href: "/download" },
         { name: t('nav.weave'), href: "/weave" },
         { name: t('nav.docs'), href: "https://github.com/CubeWhyMC/celestial/wiki" },
         { name: t('nav.sponsor'), href: "/sponsor" },
         { name: t('nav.analysis'), href: "/analysis" }
-    ];
+    ], [t]);
 
     return (
-        <nav className={`sticky top-0 z-50 bg-white/90 dark:bg-gray-950/80 backdrop-blur-xl transition-all duration-400 ${
-            isScrolled ? "border-b border-gray-200/50 dark:border-gray-700/50 shadow-lg" : "border-b-0"
+        <nav className={`sticky top-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm md:backdrop-blur-xl transition-all duration-300 ${
+            isScrolled ? "border-b border-gray-200/30 dark:border-gray-700/30 shadow-sm" : "border-b-0"
         }`}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex items-center justify-between h-20">
-                    {/* 品牌标识 - 更新后的版本 */}
+                <div className="flex items-center justify-between h-16">
+                    {/* 品牌标识 - 优化点击反馈 */}
                     <motion.div
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
+                        whileTap={{ scale: 0.95 }}
                         className="flex items-center flex-1"
                     >
                         <NavbarLink
                             href="/"
-                            className="group relative text-2xl font-black bg-gradient-to-r from-purple-400 via-blue-300 to-purple-400 bg-clip-text text-transparent"
+                            className="group relative text-2xl font-bold bg-gradient-to-r from-purple-500 to-blue-400 bg-clip-text text-transparent"
                         >
-                            {/* 星光粒子效果 */}
-                            <div className="absolute -top-2 -right-3 w-3 h-3 bg-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-[0_0_8px_#fff] animate-pulse" />
-
-                            {/* 文字主体 */}
                             <motion.span
                                 className="block relative"
-                                whileHover={{
-                                    scale: 1.05,
-                                    textShadow: "0 0 10px rgba(165,180,252,0.5)"
-                                }}
+                                initial={{ scale: 0.98 }}
+                                animate={{ scale: 1 }}
                                 transition={{ type: "spring", stiffness: 300 }}
                             >
                                 Celestial
-                                {/* 流动光效 */}
-                                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 -skew-x-12" />
+                                <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-purple-400 to-blue-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                             </motion.span>
-
-                            {/* 动态下划线 */}
-                            <span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-purple-400 to-blue-300 rounded-full origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out" />
                         </NavbarLink>
                     </motion.div>
 
-
                     {/* 桌面导航 */}
-                    <div className="hidden md:flex items-center gap-8">
-                        <div className="flex space-x-6">
-                            {navigation.map((item, index) => (
+                    <div className="hidden md:flex items-center gap-6">
+                        <div className="flex space-x-5">
+                            {navigation.map((item) => (
                                 <motion.div
                                     key={item.name}
-                                    initial={{ opacity: 0, y: -10 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ delay: index * 0.1 }}
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    transition={{ duration: 0.3 }}
+                                    className="transform-gpu"
                                 >
                                     <NavbarLink
                                         href={item.href}
-                                        className="relative px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 text-lg font-medium group"
+                                        className="relative px-3 py-2 text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 text-[15px] font-medium group"
                                     >
                                         {item.name}
-                                        <span className="absolute -bottom-1 left-1/2 w-0 h-0.5 bg-purple-500 transition-all duration-300 group-hover:w-full group-hover:left-0" />
+                                        <span className="absolute -bottom-0.5 left-0 w-0 h-[2px] bg-purple-500 transition-all duration-300 group-hover:w-full" />
                                     </NavbarLink>
                                 </motion.div>
                             ))}
@@ -90,60 +91,73 @@ function Navbar() {
                         <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
-                            className="ml-6 border-l border-gray-200 dark:border-gray-700 pl-6"
+                            className="ml-5 border-l border-gray-200 dark:border-gray-700 pl-5"
                         >
-                            <SocialLinks
-                                iconClass="text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800"
-                                iconSize={24}
-                            />
+                            <Suspense fallback={<div className="w-6 h-6" />}>
+                                <SocialLinks
+                                    iconClass="text-gray-500 dark:text-gray-400 hover:text-purple-500 dark:hover:text-purple-400 transition-colors p-1.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"
+                                    iconSize={22}
+                                />
+                            </Suspense>
                         </motion.div>
                     </div>
 
-                    {/* 移动端菜单按钮 */}
-                    <motion.div
-                        className="md:hidden z-50"
+                    {/* 优化后的移动菜单按钮 */}
+                    <motion.button
+                        onClick={() => setIsOpen(!isOpen)}
+                        className="md:hidden z-50 p-2.5 rounded-full bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm shadow-sm hover:shadow-md transition-all"
                         whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
                     >
-                        <button
-                            onClick={() => setIsOpen(!isOpen)}
-                            className="p-3 rounded-xl bg-gradient-to-br from-purple-50 to-blue-50 dark:from-gray-800 dark:to-gray-800 shadow-sm hover:shadow-md transition-all"
-                        >
-                            {isOpen ? (
-                                <XMarkIcon className="h-7 w-7 text-gray-600 dark:text-gray-400" />
-                            ) : (
-                                <Bars3Icon className="h-7 w-7 text-gray-400 dark:text-gray-400" />
-                            )}
-                        </button>
-                    </motion.div>
+                        {isOpen ? (
+                            <XMarkIcon className="h-7 w-7 text-purple-500 dark:text-purple-400" />
+                        ) : (
+                            <Bars3Icon className="h-7 w-7 text-gray-600 dark:text-gray-300" />
+                        )}
+                    </motion.button>
 
-                    {/* 移动端菜单 */}
+                    {/* 优化后的移动端菜单 */}
                     <AnimatePresence>
                         {isOpen && (
                             <motion.div
                                 initial={{ opacity: 0, y: -20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0, y: -20 }}
-                                className="md:hidden absolute top-20 left-0 right-0 bg-white dark:bg-gray-700 shadow-xl rounded-b-2xl mx-4"
+                                transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                                className="md:hidden fixed inset-0 bg-black/40 dark:bg-black/60 backdrop-blur-lg pt-20"
+                                onClick={() => setIsOpen(false)}
                             >
-                                <div className="px-6 py-4 space-y-3">
-                                    {navigation.map((item) => (
-                                        <NavbarLink
-                                            key={item.name}
-                                            href={item.href}
-                                            className="block px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-purple-50 dark:hover:bg-gray-700 rounded-lg font-medium transition-colors"
-                                            onClick={() => setIsOpen(false)}
-                                        >
-                                            {item.name}
-                                        </NavbarLink>
-                                    ))}
-                                    <div className="pt-4 border-t border-gray-100 dark:border-gray-700">
-                                        <SocialLinks
-                                            containerClass="flex justify-center gap-5"
-                                            iconClass="text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 p-2 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700"
-                                            iconSize={28}
-                                        />
+                                <motion.div
+                                    className="bg-white/95 dark:bg-gray-800/95 backdrop-blur-xl shadow-2xl rounded-2xl mx-4 overflow-hidden"
+                                    onClick={(e) => e.stopPropagation()}
+                                >
+                                    <div className="divide-y divide-gray-100/80 dark:divide-gray-700/80">
+                                        {navigation.map((item) => (
+                                            <NavbarLink
+                                                key={item.name}
+                                                href={item.href}
+                                                className="block px-6 py-4 text-gray-700 dark:text-gray-200 hover:bg-purple-50/50 dark:hover:bg-gray-700/50 transition-colors active:bg-purple-100/50"
+                                                onClick={() => setIsOpen(false)}
+                                            >
+                                                <motion.div
+                                                    whileTap={{ scale: 0.98 }}
+                                                    className="flex items-center space-x-4"
+                                                >
+                                                    <span className="text-[16px] font-medium tracking-wide">{item.name}</span>
+                                                </motion.div>
+                                            </NavbarLink>
+                                        ))}
+                                        <div className="p-4 bg-gray-50/50 dark:bg-gray-700/30">
+                                            <Suspense fallback={<div className="h-8" />}>
+                                                <SocialLinks
+                                                    containerClass="flex justify-center gap-5"
+                                                    iconClass="text-gray-600 dark:text-gray-300 hover:text-purple-500 dark:hover:text-purple-400 p-2 rounded-xl bg-white/80 dark:bg-gray-800/80 hover:bg-gray-100/80 dark:hover:bg-gray-700/80 transition-all shadow-sm hover:shadow-md"
+                                                    iconSize={26}
+                                                />
+                                            </Suspense>
+                                        </div>
                                     </div>
-                                </div>
+                                </motion.div>
                             </motion.div>
                         )}
                     </AnimatePresence>
