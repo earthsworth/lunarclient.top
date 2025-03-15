@@ -76,7 +76,11 @@ const resources = {
             "analysis.current_users":"Users Count",
             "analysis.online_now":"Online Users Count",
             "analysis.web_users":"Web Users Count",
-            "analysis.no-data": "No data available"
+            "analysis.no-data": "No data available",
+            "dashboard.login": "Login into Lunar API",
+            "dashboard.login.tip": "DO NOT input the Minecraft thing in the form",
+            "dashboard.login.process": "Process Login",
+            "dashboard.login.register-link": "Or...Register a LunarCN account"
         }
     },
     zh: {
@@ -149,7 +153,11 @@ const resources = {
             "analysis.current_users":"用户总数",
             "analysis.online_now":"在线用户",
             "analysis.web_users":"网页用户",
-            "analysis.no-data": "没有统计数据"
+            "analysis.no-data": "没有统计数据",
+            "dashboard.login": "登录到山寨API",
+            "dashboard.login.tip": "这里的内容不是你的Minecraft用户信息",
+            "dashboard.login.process": "登录",
+            "dashboard.login.register-link": "或者...注册一个账户"
         }
     }
 };

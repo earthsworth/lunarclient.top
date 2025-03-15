@@ -29,3 +29,10 @@ export interface ApiResponse<T> {
     data: T;
     message: string;
 }
+
+export interface AuthResponse {
+    username: string;
+    token: string;
+    expire: number;
+    role: string;
+}
