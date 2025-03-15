@@ -1,7 +1,8 @@
-import { Line } from 'react-chartjs-2';
+import {Line} from 'react-chartjs-2';
 import {
     CategoryScale,
     Chart as ChartJS,
+    ChartData,
     ChartOptions,
     Legend,
     LinearScale,
@@ -10,10 +11,11 @@ import {
     Title,
     Tooltip,
 } from 'chart.js';
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
 import axios from "axios";
-import { useTranslation } from "react-i18next";
-import { motion } from 'framer-motion';
+import {useTranslation} from "react-i18next";
+import {motion} from 'framer-motion';
+import {ApiResponse} from "../../entities.ts";
 
 ChartJS.register(
     CategoryScale,
@@ -32,33 +34,33 @@ interface UserStat {
     timestamp: number;
 }
 
-interface ApiResponse {
-    code: number;
-    data: UserStat[];
-    message: string;
-}
-
 function AnalysisPage() {
-    const { t } = useTranslation();
-    const [data, setData] = useState<ApiResponse | null>(null);
+    const {t} = useTranslation();
+    const [data, setData] = useState<UserStat[] | null>(null);
     const [loading, setLoading] = useState(true);
+    const [latestData, setLatestData] = useState<UserStat>()
 
     useEffect(() => {
-        axios.get<ApiResponse>("https://ws.lunarclient.top/api/analysis?after=0")
+        // load history
+        axios.get<ApiResponse<UserStat[]>>("/api-next/analysis?after=0")
             .then(response => {
                 // 按时间戳升序排列（旧 -> 新）
                 const sortedData = response.data.data.sort((a, b) => a.timestamp - b.timestamp);
 
-                console.log("数据时间范围验证:", {
-                    最早时间: new Date(sortedData[0].timestamp * 1000).toLocaleString(),
-                    最新时间: new Date(sortedData[sortedData.length - 1].timestamp * 1000).toLocaleString()
-                });
 
-                setData({
-                    ...response.data,
-                    data: sortedData
-                });
-                setLoading(false);
+                // load latest
+                axios.get<ApiResponse<UserStat>>("/api-next/analysis/now")
+                    .then(response => {
+                        const responseData = response.data.data
+                        setLatestData(responseData)
+                        setData([...sortedData, responseData])
+
+                        setLoading(false);
+                    })
+                    .catch(err => {
+                        console.error("API Error:", err);
+                        setLoading(false);
+                    });
             })
             .catch(err => {
                 console.error("API Error:", err);
@@ -80,9 +82,10 @@ function AnalysisPage() {
         return (
             <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 py-12 px-4 sm:px-6 lg:px-8">
                 <div className="max-w-6xl mx-auto">
-                    <div className="bg-gray-800/50 backdrop-blur-lg rounded-2xl p-6 shadow-2xl border border-gray-700/30">
+                    <div
+                        className="bg-gray-800/50 backdrop-blur-lg rounded-2xl p-6 shadow-2xl border border-gray-700/30">
                         <div className="h-[600px] animate-pulse">
-                            <div className="h-full bg-gray-700/30 rounded-xl" />
+                            <div className="h-full bg-gray-700/30 rounded-xl"/>
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
                             {[1, 2, 3].map((i) => (
@@ -91,10 +94,10 @@ function AnalysisPage() {
                                     className="p-4 rounded-xl bg-gray-700/30 backdrop-blur-sm border border-gray-600/30"
                                 >
                                     <div className="flex items-center gap-3">
-                                        <div className="h-3 w-3 rounded-full bg-gray-600/50" />
+                                        <div className="h-3 w-3 rounded-full bg-gray-600/50"/>
                                         <div className="space-y-2">
-                                            <div className="h-4 bg-gray-600/50 rounded w-24" />
-                                            <div className="h-6 bg-gray-600/50 rounded w-12" />
+                                            <div className="h-4 bg-gray-600/50 rounded w-24"/>
+                                            <div className="h-6 bg-gray-600/50 rounded w-12"/>
                                         </div>
                                     </div>
                                 </div>
@@ -106,29 +109,26 @@ function AnalysisPage() {
         );
     }
 
-    if (!data?.data?.length) {
+    if (!data?.length) {
         return (
             <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={{opacity: 0, y: 20}}
+                animate={{opacity: 1, y: 0}}
                 className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 flex items-center justify-center"
             >
                 <div className="text-gray-400 text-xl">
-                    {t('analysis.no_data') || 'No data available'}
+                    {t('analysis.no-data') || 'No data available'}
                 </div>
             </motion.div>
         );
     }
 
-    // 获取最新数据（排序后的最后一个元素）
-    const latestData = data.data[data.data.length - 1];
-
-    const chartData = {
-        labels: data.data.map((item) => formatTimestamp(item.timestamp)),
+    const chartData: ChartData<'line'> = {
+        labels: data.map((item) => formatTimestamp(item.timestamp)),
         datasets: [
             {
                 label: t('analysis.current_users') || 'User Count',
-                data: data.data.map((item) => item.userCount),
+                data: data.map((item) => item.userCount),
                 borderColor: 'rgba(75, 192, 192, 1)',
                 borderWidth: 2,
                 tension: 0.4,
@@ -144,7 +144,7 @@ function AnalysisPage() {
             },
             {
                 label: t('analysis.online_now') || 'Online Count',
-                data: data.data.map((item) => item.onlineCount),
+                data: data.map((item) => item.onlineCount),
                 borderColor: 'rgba(153, 102, 255, 1)',
                 borderWidth: 2,
                 borderDash: [5, 5],
@@ -157,7 +157,7 @@ function AnalysisPage() {
             },
             {
                 label: t('analysis.web_users') || 'Web Users',
-                data: data.data.map((item) => item.webUserCount),
+                data: data.map((item) => item.webUserCount),
                 borderColor: 'rgba(255, 159, 64, 1)',
                 borderWidth: 2,
                 tension: 0.4,
@@ -207,7 +207,7 @@ function AnalysisPage() {
                 usePointStyle: true,
                 callbacks: {
                     title: (context) => {
-                        const rawData = data.data[context[0].dataIndex];
+                        const rawData = data[context[0].dataIndex];
                         return rawData ? new Date(rawData.timestamp * 1000).toLocaleString() : '';
                     },
                     label: (context) => {
@@ -240,31 +240,31 @@ function AnalysisPage() {
 
     return (
         <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            initial={{opacity: 0, y: 20}}
+            animate={{opacity: 1, y: 0}}
+            transition={{duration: 0.5}}
             className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 py-12 px-4 sm:px-6 lg:px-8"
         >
             <div className="max-w-6xl mx-auto">
                 <div className="bg-gray-800/50 backdrop-blur-lg rounded-2xl p-6 shadow-2xl border border-gray-700/30">
                     <div className="h-[600px]">
-                        <Line data={chartData} options={options} />
+                        <Line data={chartData} options={options}/>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
                         <StatCard
                             label={t('analysis.current_users') || 'Current Users'}
-                            value={latestData.userCount}
+                            value={latestData?.userCount || 0}
                             color="rgb(75, 192, 192)"
                         />
                         <StatCard
                             label={t('analysis.online_now') || 'Online Now'}
-                            value={latestData.onlineCount}
+                            value={latestData?.onlineCount || 0}
                             color="rgb(153, 102, 255)"
                         />
                         <StatCard
                             label={t('analysis.web_users') || 'Web Users'}
-                            value={latestData.webUserCount}
+                            value={latestData?.webUserCount || 0}
                             color="rgb(255, 159, 64)"
                         />
                     </div>
@@ -274,15 +274,15 @@ function AnalysisPage() {
     );
 }
 
-const StatCard = ({ label, value, color }: { label: string; value: number; color: string }) => (
+const StatCard = ({label, value, color}: { label: string; value: number; color: string }) => (
     <motion.div
-        whileHover={{ scale: 1.03 }}
+        whileHover={{scale: 1.03}}
         className="p-4 rounded-xl bg-gray-700/30 backdrop-blur-sm border border-gray-600/30"
     >
         <div className="flex items-center gap-3">
             <div
                 className="h-3 w-3 rounded-full"
-                style={{ backgroundColor: color }}
+                style={{backgroundColor: color}}
             />
             <div>
                 <p className="text-gray-400 text-sm">{label}</p>

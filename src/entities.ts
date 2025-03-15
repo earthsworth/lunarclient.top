@@ -23,3 +23,9 @@ export interface WeaveIndexProject {
     repository: string;
     newWeave: boolean;
 }
+
+export interface ApiResponse<T> {
+    code: number;
+    data: T;
+    message: string;
+}

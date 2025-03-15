@@ -75,7 +75,8 @@ const resources = {
             "analysis.title": "User Analysis",
             "analysis.current_users":"Users Count",
             "analysis.online_now":"Online Users Count",
-            "analysis.web_users":"Web Users Count"
+            "analysis.web_users":"Web Users Count",
+            "analysis.no-data": "No data available"
         }
     },
     zh: {
@@ -147,8 +148,8 @@ const resources = {
             "analysis.title": "用户统计数据",
             "analysis.current_users":"用户总数",
             "analysis.online_now":"在线用户",
-            "analysis.web_users":"网页用户"
-
+            "analysis.web_users":"网页用户",
+            "analysis.no-data": "没有统计数据"
         }
     }
 };
