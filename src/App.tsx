@@ -10,6 +10,7 @@ import AnalysisPage from "./compoents/AnalysisPage/AnalysisPage.tsx";
 import DashboardHomePage from "./compoents/DashboardHome/DashboardHomePage.tsx";
 import RequireAuth from "./compoents/RequireAuth/RequireAuth.tsx";
 import DashboardLoginPage from "./compoents/DashboardLoginPage/DashboardLoginPage.tsx";
+import CosmeticsPage from "./compoents/CosmeticsPage/CosmeticsPage.tsx";
 
 function App() {
     return (<>
@@ -18,6 +19,7 @@ function App() {
             <Routes>
                 <Route index element={<HomePage/>}/>
                 <Route path="download" element={<DownloadPage repository={"CubeWhyMC/celestial"}/>}/>
+                <Route path="cosmetics" element={<CosmeticsPage/>}/>
                 <Route path="weave" element={<WeaveIndexPage dataSource={"https://raw.githubusercontent.com/CubeWhyMC/weave-index/refs/heads/master/index-by-developers.json"}/>}/>
                 <Route path="pineapple" element={<PineapplePage/>}/>
                 <Route path="sponsor" element={<SponsorPage/>}/>

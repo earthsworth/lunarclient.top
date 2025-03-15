@@ -80,7 +80,13 @@ const resources = {
             "dashboard.login": "Login into Lunar API",
             "dashboard.login.tip": "DO NOT input the Minecraft thing in the form",
             "dashboard.login.process": "Process Login",
-            "dashboard.login.register-link": "Or...Register a LunarCN account"
+            "dashboard.login.register-link": "Or...Register a LunarCN account",
+            "cosmetics.title": "unlimited cosmetics for free!",
+            "cosmetics.download.catbox": "Get it now (Catbox)",
+            "cosmetics.source.sorry": "The content of the server is closed source for the time being. If you have the ability to improve it, you can apply to join us on Discord.",
+            "cosmetics.tutorial": "Add the Javaagent you just downloaded to Celestial to enjoy unlimited cosmetics & emotes",
+            "cosmetics.tip": "If you like our work, please share it with your friends!",
+            "cosmetics.source": "Source code (clientside stuff)",
         }
     },
     zh: {
@@ -157,7 +163,13 @@ const resources = {
             "dashboard.login": "登录到山寨API",
             "dashboard.login.tip": "这里的内容不是你的Minecraft用户信息",
             "dashboard.login.process": "登录",
-            "dashboard.login.register-link": "或者...注册一个账户"
+            "dashboard.login.register-link": "或者...注册一个账户",
+            "cosmetics.title": "免费的饰品!",
+            "cosmetics.tip": "如果你喜欢我们的工作,请将它分享给你的朋友!",
+            "cosmetics.tutorial": "在Celestial中加入你刚刚下载Javaagent即可享受无限的饰品!",
+            "cosmetics.source.sorry": "服务端的内容暂时是闭源的,如果你有能力进行改进你可以在Discord申请加入我们",
+            "cosmetics.download.catbox": "我等不及了,赶紧让我下载 (Catbox)",
+            "cosmetics.source": "源代码 (客户端部分)"
         }
     }
 };

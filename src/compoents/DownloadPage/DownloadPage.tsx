@@ -4,6 +4,7 @@ import {FaStar} from "react-icons/fa";
 import Markdown from "react-markdown";
 import remarkGfm from 'remark-gfm';
 import {fetchLatestVersion} from "../../utils.ts";
+import {NavLink} from "react-router";
 
 interface Props {
     repository: string;
@@ -46,6 +47,7 @@ function DownloadPage(props: Props) {
     return (<>
             <div className={"flex flex-col justify-center items-center h-screen overflow-hidden gap-4 m-auto"}>
                 <h1 className={"text-3xl font-semibold"}>{t('download.title')}</h1>
+                <NavLink to={"/cosmetics"} className={"text-red-400 underline cursor-pointer hover:text-red-500"}>Get UNLIMITED cosmetics today!</NavLink>
                 {!latestVersion ?
                     <>
                         <div className={"flex gap-2 flex-col animate-pulse"}>
