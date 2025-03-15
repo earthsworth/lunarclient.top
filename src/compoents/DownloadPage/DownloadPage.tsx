@@ -47,7 +47,7 @@ function DownloadPage(props: Props) {
     return (<>
             <div className={"flex flex-col justify-center items-center h-screen overflow-hidden gap-4 m-auto"}>
                 <h1 className={"text-3xl font-semibold"}>{t('download.title')}</h1>
-                <NavLink to={"/cosmetics"} className={"text-red-400 underline cursor-pointer hover:text-red-500"}>Get UNLIMITED cosmetics today!</NavLink>
+                <NavLink to={"/cosmetics"} className={"text-red-400 underline cursor-pointer hover:text-red-500"}>{t('download.cosmetics')}</NavLink>
                 {!latestVersion ?
                     <>
                         <div className={"flex gap-2 flex-col animate-pulse"}>
@@ -66,10 +66,13 @@ function DownloadPage(props: Props) {
                             <p>{t('download.warn.mirror.origin-link')} https://github.com/{props.repository}</p>
                         </div>
                     </> :
-                    <div className={"flex flex-row items-center gap-2"}>
-                        <label>{t('download.latest')}</label>
-                        <a href={`https://github.com/${props.repository}/releases/${latestVersion}`} target={"_blank"}
-                           className={"underline hover:text-blue-500"}>{latestVersion}</a>
+                    <div className={"flex sm:flex-col lg:flex-row items-center gap-2"}>
+                        <div className={"flex flex-row gap-1"}>
+                            <label>{t('download.latest')}</label>
+                            <a href={`https://github.com/${props.repository}/releases/${latestVersion}`}
+                               target={"_blank"}
+                               className={"underline hover:text-blue-500"}>{latestVersion}</a>
+                        </div>
                         <label>({t('download.tip')})</label>
                     </div>
                 }
