@@ -99,14 +99,15 @@ function HomePage() {
         </div>
 
         <div
-            className={"flex flex-col items-center justify-center align-bottom mt-10 w-full shadow-xl bg-gray-300 dark:bg-[#1c1e21] rounded-t"}>
-            <label className={"align-middle"}>Disclaimer: Celestial is not "cracked Lunarclient", we will not
+            className={"flex flex-col items-center justify-center align-bottom mt-10 w-full shadow-xl bg-gray-300 dark:bg-[#1c1e21] rounded-t select-none"}>
+            <label>The software is <strong className={"text-red-500"}>open source</strong> and has no viruses or backdoors.</label>
+            <label className={"align-middle"}><label className={"text-yellow-500"}>Disclaimer</label>: Celestial is not "<strong className={"text-red-500"}>cracked Lunar Client</strong>", we will not
                 develop similar features in the
                 future</label>
             <div className={"flex flex-row w-full items-center justify-between px-4"}>
                 <label>Celestial Launcher by cubewhy & contributors</label>
-                <label className={"text-gray-300 dark:text-[#1c1e21] cursor-pointer"} onClick={handlePineapple}>This server is made in pineapples.</label>
-                <label>Not affiliated with Moonsworth or Mojang</label>
+                <label className={"text-gray-300 dark:text-[#1c1e21] cursor-pointer"} onClick={handlePineapple}>pineapples enhanced.</label>
+                <label>Not affiliated with <strong className={"text-blue-500"}>Moonsworth</strong> or <strong className={"text-red-400"}>Mojang</strong></label>
             </div>
         </div>
     </>);
