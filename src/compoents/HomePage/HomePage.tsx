@@ -14,7 +14,7 @@ import {useTranslation} from "react-i18next";
 import Divider from "../Divider/Divider.tsx";
 import ShowcaseCard from "./ShowcaseCard.tsx";
 import SocialLinks from "../SocialLinks/SocialLinks.tsx";
-import {useNavigate} from "react-router";
+import {Link, useNavigate} from "react-router";
 
 function HomePage() {
     const {t} = useTranslation();
@@ -98,16 +98,35 @@ function HomePage() {
             <SocialLinks border={true}/>
         </div>
 
-        <div
-            className={"flex flex-col items-center justify-center align-bottom mt-10 w-full shadow-xl bg-gray-300 dark:bg-[#1c1e21] rounded-t select-none"}>
+        <div className={"flex flex-col items-center justify-center align-bottom mt-10 w-full shadow-xl bg-gray-300 dark:bg-[#1c1e21] rounded-t select-none p-4"}>
+            <div className="flex gap-4 mb-2">
+                <Link
+                    to="/eula"
+                    className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors"
+                >
+                    {t('footer.eula')}
+                </Link>
+            </div>
+
             <label>The software is <strong className={"text-red-500"}>open source</strong> and has no viruses or backdoors.</label>
-            <label className={"align-middle"}><label className={"text-yellow-500"}>Disclaimer</label>: Celestial is not "<strong className={"text-red-500"}>cracked Lunar Client</strong>", we will not
-                develop similar features in the
-                future</label>
-            <div className={"flex flex-row w-full items-center justify-between px-4"}>
-                <label>Celestial Launcher by cubewhy & contributors</label>
-                <label className={"text-gray-300 dark:text-[#1c1e21] cursor-pointer"} onClick={handlePineapple}>pineapples enhanced.</label>
-                <label>Not affiliated with <strong className={"text-blue-500"}>Moonsworth</strong> or <strong className={"text-red-400"}>Mojang</strong></label>
+            <label className={"text-center"}>
+                <span className={"text-yellow-500"}>Disclaimer</span>: Celestial is not
+                "<strong className={"text-red-500"}>krocked Lunar Client</strong>",
+                we will not develop similar features in the future
+            </label>
+
+            <div className={"flex flex-col sm:flex-row w-full items-center justify-between px-4 mt-2 gap-2"}>
+                <label className="text-sm">Celestial Launcher by cubewhy & contributors</label>
+                <label
+                    className={"text-gray-300 dark:text-[#1c1e21] cursor-pointer text-sm"}
+                    onClick={handlePineapple}
+                >
+                    pineapples enhanced.
+                </label>
+                <label className="text-sm">
+                    Not affiliated with <strong className={"text-blue-500"}>Moonsworth</strong> or
+                    <strong className={"text-red-400"}> Mojang</strong>
+                </label>
             </div>
         </div>
     </>);
