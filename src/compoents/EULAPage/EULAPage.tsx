@@ -5,22 +5,22 @@ function PrivacyPolicy() {
     const { t } = useTranslation();
 
     return (
-        <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white py-12 px-4 sm:px-6 lg:px-8">
+        <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white dark:from-blue-900 dark:to-[#222] py-12 px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-12">
-                    <FaLock className="mx-auto h-12 w-12 text-blue-600 mb-6" />
-                    <h1 className="text-4xl font-extrabold text-gray-900 tracking-tight">
+                    <FaLock className="mx-auto h-12 w-12 text-blue-600 dark:text-blue-400 mb-6" />
+                    <h1 className="text-4xl font-extrabold text-gray-900 dark:text-white tracking-tight">
                         {t('privacy.title')}
                     </h1>
-                    <p className="mt-4 text-lg text-gray-500">
+                    <p className="mt-4 text-lg text-gray-500 dark:text-gray-300">
                         {t('privacy.effective_date')}
                     </p>
                 </div>
 
-                <div className="bg-white shadow-lg rounded-2xl p-8 md:p-12 border border-gray-100">
-                    <div className="prose-lg text-gray-700 space-y-10">
+                <div className="bg-white dark:bg-[#222] shadow-lg rounded-2xl p-8 md:p-12 border dark:border-0 border-gray-100">
+                    <div className="prose-lg text-gray-700 dark:text-gray-300 space-y-10">
                         <section>
-                            <h2 className="text-2xl font-semibold text-gray-900 mb-4 flex items-center">
+                            <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4 flex items-center">
                                 <FaLock className="mr-2 text-blue-500" />
                                 {t('privacy.data_collection.title')}
                             </h2>
@@ -33,7 +33,7 @@ function PrivacyPolicy() {
                         </section>
 
                         <section>
-                            <h2 className="text-2xl font-semibold text-gray-900 mb-4 flex items-center">
+                            <h2 className="text-2xl font-semibold text-gray-900 dark:text-white  mb-4 flex items-center">
                                 <FaLock className="mr-2 text-blue-500" />
                                 {t('privacy.data_usage.title')}
                             </h2>
@@ -43,7 +43,7 @@ function PrivacyPolicy() {
                         </section>
 
                         <section>
-                            <h2 className="text-2xl font-semibold text-gray-900 mb-4 flex items-center">
+                            <h2 className="text-2xl font-semibold text-gray-900 dark:text-white  mb-4 flex items-center">
                                 <FaLock className="mr-2 text-blue-500" />
                                 {t('privacy.third_party.title')}
                             </h2>
@@ -53,7 +53,7 @@ function PrivacyPolicy() {
                         </section>
 
                         <section>
-                            <h2 className="text-2xl font-semibold text-gray-900 mb-4 flex items-center">
+                            <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4 flex items-center">
                                 <FaLock className="mr-2 text-blue-500" />
                                 {t('privacy.security.title')}
                             </h2>
@@ -62,15 +62,15 @@ function PrivacyPolicy() {
                             </p>
                         </section>
 
-                        <div className="mt-12 p-6 bg-blue-50 rounded-xl border border-blue-200">
-                            <h3 className="text-xl font-semibold text-blue-800 mb-4">
+                        <div className="mt-12 p-6 bg-blue-50 dark:bg-gray-800 rounded-xl border border-blue-200 dark:border-0">
+                            <h3 className="text-xl font-semibold text-blue-800 dark:text-blue-400 mb-4">
                                 {t('privacy.contact.title')}
                             </h3>
-                            <p className="text-blue-700">
+                            <p className="text-blue-700 dark:text-blue-200">
                                 {t('privacy.contact.content')}{' '}
                                 <a
                                     href="mailto:support@lunarclient.top"
-                                    className="text-blue-600 underline hover:text-blue-800"
+                                    className="text-blue-600 dark:text-blue-300 underline hover:text-blue-800"
                                 >
                                     support@lunarclient.top
                                 </a>
