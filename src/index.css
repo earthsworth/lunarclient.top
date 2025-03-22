@@ -22,3 +22,14 @@ body {
     0% { transform: translateY(0) scale(1); opacity: 1; }
     100% { transform: translateY(-10px) scale(0.2); opacity: 0; }
 }
+
+@keyframes gradient-pulse {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.hover\:gradient-animate:hover {
+    background-size: 200% 200%;
+    animation: gradient-pulse 3s ease infinite;
+}
