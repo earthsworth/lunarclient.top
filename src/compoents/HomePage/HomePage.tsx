@@ -15,8 +15,11 @@ import Divider from "../Divider/Divider.tsx";
 import ShowcaseCard from "./ShowcaseCard.tsx";
 import SocialLinks from "../SocialLinks/SocialLinks.tsx";
 import {Link, useNavigate} from "react-router";
+import { useTitle } from '../../utils.ts';
 
 function HomePage() {
+    useTitle("Celestial Launcher");
+
     const {t} = useTranslation();
     const navigate = useNavigate();
 

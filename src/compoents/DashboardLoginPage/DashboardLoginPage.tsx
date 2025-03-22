@@ -4,9 +4,11 @@ import {useState} from "react";
 import {useNavigate} from "react-router";
 import {ApiResponse, AuthResponse} from "../../entities.ts";
 import axios from "axios";
+import { useTitle } from "../../utils.ts";
 
 
 function DashboardLoginPage() {
+    useTitle("Login into LunarCN");
     const {t} = useTranslation();
     const navigate = useNavigate();
     const [error, setError] = useState("");

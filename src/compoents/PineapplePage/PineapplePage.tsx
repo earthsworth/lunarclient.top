@@ -1,7 +1,9 @@
 import {useState} from "react";
 import ReactConfetti from "react-confetti";
+import { useTitle } from "../../utils";
 
 function PineapplePage() {
+    useTitle("You got a pineapple! - LunarCN");
     const [showConfetti, setShowConfetti] = useState(false);
 
     const handleClick = () => {

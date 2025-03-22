@@ -1,8 +1,10 @@
 import imgUnlimitedCosmetics from '../../assets/unlimited-cosmetics.webp';
 import {CSSProperties} from "react";
 import {useTranslation} from "react-i18next";
+import { useTitle } from '../../utils';
 
 function CosmeticsPage() {
+    useTitle("Get Free Cosmetics Today - LunarCN");
     const {t} = useTranslation();
     const style: CSSProperties = {
         backgroundImage: `url(${imgUnlimitedCosmetics})`,

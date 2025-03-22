@@ -1,7 +1,9 @@
 import { useTranslation } from "react-i18next";
 import { FaLock } from "react-icons/fa";
+import { useTitle } from "../../utils";
 
 function PrivacyPolicy() {
+    useTitle("LunarCN Privacy Policy");
     const { t } = useTranslation();
 
     return (

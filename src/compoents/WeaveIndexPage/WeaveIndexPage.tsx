@@ -9,6 +9,7 @@ import WeaveDeveloper from "./WeaveDeveloper.tsx";
 import WarningNotification from "../Notification/WarningNotification.tsx";
 import FloatingButton from "../FloatingButton/FloatingButton.tsx";
 import {FaArrowUp} from "react-icons/fa";
+import { useTitle } from "../../utils.ts";
 
 
 interface Props {
@@ -16,6 +17,7 @@ interface Props {
 }
 
 function WeaveIndexPage(props: Props) {
+    useTitle("Weave Index - LunarCN");
     const {t} = useTranslation();
 
     const [weaveIndex, setWeaveIndex] = useState<WeaveIndex | null>(null)

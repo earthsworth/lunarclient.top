@@ -7,8 +7,10 @@ import paypalQR from '../../assets/paypal-qr.webp';
 import TonQR from '../../assets/TON-qr.webp';
 import Divider from '../Divider/Divider.tsx';
 import SocialLinks from '../SocialLinks/SocialLinks.tsx';
+import { useTitle } from '../../utils.ts';
 
 function SponsorPage() {
+    useTitle("Donate us - LunarCN");
     const { t } = useTranslation();
 
     useEffect(() => {

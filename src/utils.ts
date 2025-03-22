@@ -1,5 +1,6 @@
 import axios from "axios";
 import {GitHubRelease} from "./entities.ts";
+import { useEffect } from "react";
 
 export async function fetchLatestVersion(repository: string): Promise<Array<string | null> | null> {
     const url = `https://api.github.com/repos/${repository}/releases?per_page=1&include_prereleases=true`;
@@ -16,3 +17,13 @@ export async function fetchLatestVersion(repository: string): Promise<Array<stri
         return [null, null];
     }
 }
+
+export function useTitle(title: string) {
+    useEffect(() => {
+      const prevTitle = document.title;
+      document.title = title;
+      return () => {
+        document.title = prevTitle;
+      };
+    }, [title]);
+  }

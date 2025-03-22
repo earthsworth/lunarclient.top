@@ -1,17 +1,18 @@
-import {useTranslation} from "react-i18next";
-import {useEffect, useState} from "react";
-import {FaDiscord, FaDownload, FaGithub} from "react-icons/fa";
+import { useTranslation } from "react-i18next";
+import { useEffect, useState } from "react";
+import { FaDiscord, FaDownload, FaGithub } from "react-icons/fa";
 import Markdown from "react-markdown";
 import remarkGfm from 'remark-gfm';
-import {fetchLatestVersion} from "../../utils.ts";
-import {motion, AnimatePresence} from "framer-motion";
+import { fetchLatestVersion, useTitle } from "../../utils.ts";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface Props {
     repository: string;
 }
 
 function DownloadPage(props: Props) {
-    const {t} = useTranslation();
+    useTitle("Download Celestial - LunarCN");
+    const { t } = useTranslation();
     const [latestVersion, setLatestVersion] = useState<string | null>(null);
     const [changelog, setChangelog] = useState<string | null>(null);
     const [showChangelog, setShowChangelog] = useState(false);
@@ -34,7 +35,7 @@ function DownloadPage(props: Props) {
     }
 
     const containerVariants = {
-        hidden: {opacity: 0},
+        hidden: { opacity: 0 },
         show: {
             opacity: 1,
             transition: {
@@ -44,14 +45,14 @@ function DownloadPage(props: Props) {
     };
 
     const itemVariants = {
-        hidden: {y: 20, opacity: 0},
-        show: {y: 0, opacity: 1}
+        hidden: { y: 20, opacity: 0 },
+        show: { y: 0, opacity: 1 }
     };
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-gray-900 to-blue-900 relative overflow-hidden">
             {/* 动态背景 */}
-            <div className="absolute inset-0 bg-gradient-radial from-purple-500/20 to-transparent opacity-30 animate-pulse-slow"/>
+            <div className="absolute inset-0 bg-gradient-radial from-purple-500/20 to-transparent opacity-30 animate-pulse-slow" />
 
             <div className="container mx-auto px-4 py-12 relative z-10">
                 <motion.div
@@ -67,17 +68,19 @@ function DownloadPage(props: Props) {
                         </h1>
                     </motion.div>
 
+                    {error && <p className="text-red-500">{error}</p>}
+
                     {/* 版本信息 */}
                     <motion.div variants={itemVariants} className="mb-8">
                         {!latestVersion ? (
                             <div className="space-y-4">
-                                <div className="h-4 bg-gray-700/50 rounded-full w-48 mx-auto animate-pulse"/>
-                                <div className="h-3 bg-gray-700/30 rounded-full w-64 mx-auto animate-pulse"/>
+                                <div className="h-4 bg-gray-700/50 rounded-full w-48 mx-auto animate-pulse" />
+                                <div className="h-3 bg-gray-700/30 rounded-full w-64 mx-auto animate-pulse" />
                             </div>
                         ) : (
                             <div className="bg-white/5 backdrop-blur-sm p-6 rounded-2xl border border-white/10 shadow-lg">
                                 <div className="flex items-center justify-center gap-4 mb-4">
-                                    <FaDownload className="text-2xl text-purple-400"/>
+                                    <FaDownload className="text-2xl text-purple-400" />
                                     <span className="text-2xl">{t('download.latest')}</span>
                                     <span className="text-2xl font-mono">{latestVersion}</span>
 
@@ -87,7 +90,7 @@ function DownloadPage(props: Props) {
                                     target="_blank"
                                     className="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full font-semibold hover:scale-105 transition-transform shadow-lg hover:shadow-purple-500/30"
                                 >
-                                    <FaDownload/>
+                                    <FaDownload />
                                     {t('download.btn')}
                                 </a>
                             </div>
@@ -101,14 +104,14 @@ function DownloadPage(props: Props) {
                                 href={`https://github.com/${props.repository}`}
                                 className="flex items-center gap-2 hover:text-purple-300 transition-colors"
                             >
-                                <FaGithub/>
+                                <FaGithub />
                                 GitHub Repository
                             </a>
                             <a
                                 href="https://discord.lunarclient.top"
                                 className="flex items-center gap-2 hover:text-blue-300 transition-colors"
                             >
-                                <FaDiscord/>
+                                <FaDiscord />
                                 Discord Server
                             </a>
                         </div>
@@ -128,9 +131,9 @@ function DownloadPage(props: Props) {
                     <AnimatePresence>
                         {showChangelog && (
                             <motion.div
-                                initial={{opacity: 0, height: 0}}
-                                animate={{opacity: 1, height: 'auto'}}
-                                exit={{opacity: 0, height: 0}}
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{ opacity: 1, height: 'auto' }}
+                                exit={{ opacity: 0, height: 0 }}
                                 className="mt-6 bg-gray-800/50 backdrop-blur-lg rounded-xl p-6 border border-white/10 shadow-xl"
                             >
                                 {changelog ? (
@@ -143,7 +146,7 @@ function DownloadPage(props: Props) {
                                 ) : (
                                     <div className="space-y-3 animate-pulse">
                                         {[...Array(6)].map((_, i) => (
-                                            <div key={i} className="h-4 bg-gray-700/30 rounded-full" style={{width: `${Math.random()*40 + 60}%`}}/>
+                                            <div key={i} className="h-4 bg-gray-700/30 rounded-full" style={{ width: `${Math.random() * 40 + 60}%` }} />
                                         ))}
                                     </div>
                                 )}
@@ -154,7 +157,7 @@ function DownloadPage(props: Props) {
             </div>
 
             {/* 底部装饰 */}
-            <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-gray-900/80 to-transparent pointer-events-none"/>
+            <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-gray-900/80 to-transparent pointer-events-none" />
         </div>
     );
 }
