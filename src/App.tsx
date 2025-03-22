@@ -11,6 +11,7 @@ import DashboardHomePage from "./compoents/DashboardHome/DashboardHomePage.tsx";
 import RequireAuth from "./compoents/RequireAuth/RequireAuth.tsx";
 import DashboardLoginPage from "./compoents/DashboardLoginPage/DashboardLoginPage.tsx";
 import EULAPage from "./compoents/EULAPage/EULAPage.tsx";
+import BadlionCNPage from "./compoents/BadlionCN/BadlionCNPage.tsx"
 
 function App() {
     return (<>
@@ -26,6 +27,7 @@ function App() {
                 <Route path="sponsor" element={<SponsorPage/>}/>
                 <Route path="analysis" element={<AnalysisPage/>}/>
                 <Route path="EULA" element={<EULAPage/>}/>
+                <Route path="BadlionCN" element={<BadlionCNPage/>}/>
 
                 <Route path={"dashboard"} element={<Outlet/>}>
                     <Route index element={<RequireAuth>
