@@ -2,9 +2,7 @@
 @plugin "daisyui";
 
 body {
-    @apply bg-white m-0 dark:bg-[#222] dark:text-white
-    overflow-x-hidden  /* 强制隐藏水平溢出 */
-    transition-colors duration-200 ease-in-out; /* 限制过渡类型 */
+    @apply bg-white m-0 dark:bg-[#222] dark:text-white transition-colors duration-200 ease-in-out; /* 限制过渡类型 */
 
     /* 防御性布局策略 */
     min-height: 100vh;

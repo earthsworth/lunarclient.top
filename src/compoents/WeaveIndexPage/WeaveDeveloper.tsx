@@ -24,7 +24,7 @@ function WeaveDeveloper(props: Props) {
                         <div className={"w-44 bg-gray-200 rounded-xl h-2"}></div>
                     </div>
                     <div className={"w-full border border-slate-500"}></div>
-                    <div className={"flex flex-row flex-wrap overflow-hidden gap-3"}>
+                    <div className={"flex flex-row flex-wrap gap-3"}>
                         {fakeWeaveMods}
                     </div>
                 </div>
@@ -35,7 +35,7 @@ function WeaveDeveloper(props: Props) {
         <div className={"flex flex-col gap-3"}>
             <h2 className={"text-2xl dark:text-gray-300"}>{props.dev.name}</h2>
             <div className={"w-full border border-slate-500"}></div>
-            <div className={"flex flex-row flex-wrap overflow-hidden gap-3"}>
+            <div className={"flex flex-row flex-wrap gap-3"}>
                 {props.dev.projects.map((project) => {
                     return <WeaveMod project={project}/>
                 })}
