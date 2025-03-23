@@ -96,7 +96,12 @@ function SponsorPage() {
                                 <td className="px-6 py-4 text-slate-200">甘城猫猫喵</td>
                                 <td className="px-6 py-4 text-emerald-400 font-medium">￥10</td>
                                 <td className="px-6 py-4 text-slate-400">非常好👍</td>
-                            </tr>                                
+                            </tr>
+                            <tr className="hover:bg-slate-700/20 transition-colors">
+                                <td className="px-6 py-4 text-slate-200">rylanz2</td>
+                                <td className="px-6 py-4 text-emerald-400 font-medium">$10</td>
+                                <td className="px-6 py-4 text-slate-400">BadlionCN works for me, thanks! Just hoping if you could add a setting where it saves my selected cosmetics so i dont have to rec...</td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>
