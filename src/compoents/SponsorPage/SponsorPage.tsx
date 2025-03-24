@@ -42,7 +42,7 @@ function SponsorPage() {
                 </div>
             </header>
 
-            {/* 主要内容区域 */}
+
             <main className="container mx-auto px-4 pb-24">
                 {/* 支付方式区块 */}
                 <section className="mb-20" data-aos="fade-up">
