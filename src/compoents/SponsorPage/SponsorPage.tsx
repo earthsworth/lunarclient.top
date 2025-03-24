@@ -23,7 +23,6 @@ function SponsorPage() {
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-gray-900 via-slate-900 to-zinc-900 font-poppins">
-            {/* 头部区域 */}
             <header className="relative py-24 overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-purple-600/30" />
                 <div className="container mx-auto px-4 relative">
