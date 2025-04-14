@@ -2,6 +2,7 @@ import NavbarLink from "../Navbar/NavbarLink.tsx";
 import {FaDiscord, FaGithub, FaTelegram} from "react-icons/fa";
 import {FaBilibili} from "react-icons/fa6";
 import CircleIcon from "../CircleIcon/CircleIcon.tsx";
+import matrixLogo from '../../assets/matrix-logo-white.svg';
 
 interface Props {
     border?: boolean,
@@ -24,6 +25,9 @@ function SocialLinks(props: Props) {
             </NavbarLink>
             <NavbarLink href={"https://github.com/CubeWhyMC/celestial"} social={true}>
                 <CircleIcon icon={<FaGithub size={20}/>} border={props.border}/>
+            </NavbarLink>
+            <NavbarLink href="https://matrix.to/#/#proj-lccn:matrix.org" social={false}>
+                <CircleIcon icon={<img src={matrixLogo}/>}/>
             </NavbarLink>
         </div>
     </>);
