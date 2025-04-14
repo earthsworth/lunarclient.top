@@ -127,7 +127,7 @@ function HomePage() {
                     pineapples enhanced.
                 </label>
                 <label className="text-sm">
-                    Not affiliated with <strong className={"text-blue-500"}>Moonsworth</strong> or
+                    Not affiliated with <strong className={"text-blue-500"}>Moonsworth</strong>, <strong className={"text-sky-500"}>Solar-Tweaks</strong> or
                     <strong className={"text-red-400"}> Mojang</strong>
                 </label>
             </div>
