@@ -6,9 +6,6 @@ import remarkGfm from 'remark-gfm';
 import { useTitle } from "../../utils.ts";
 import { motion, AnimatePresence } from "framer-motion";
 
-//interface Props {
-//    repository: string;
-// }
 
 function DownloadPage() {
     useTitle("Download Celestial - LunarCN");
