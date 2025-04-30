@@ -3,20 +3,20 @@ import { useEffect, useState } from "react";
 import { FaDiscord, FaDownload, FaGithub } from "react-icons/fa";
 import Markdown from "react-markdown";
 import remarkGfm from 'remark-gfm';
-import { fetchLatestVersion, useTitle } from "../../utils.ts";
+import { useTitle } from "../../utils.ts";
 import { motion, AnimatePresence } from "framer-motion";
 
-interface Props {
-    repository: string;
-}
+//interface Props {
+//    repository: string;
+// }
 
-function DownloadPage(props: Props) {
+function DownloadPage() {
     useTitle("Download Celestial - LunarCN");
     const { t } = useTranslation();
     const [latestVersion, setLatestVersion] = useState<string | null>(null);
     const [changelog, setChangelog] = useState<string | null>(null);
     const [showChangelog, setShowChangelog] = useState(false);
-    const [error, setError] = useState<string | null>(null);
+    // const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
         // 手动设置最新版本信息
@@ -74,7 +74,6 @@ function DownloadPage(props: Props) {
                         </h1>
                     </motion.div>
 
-                    {error && <p className="text-red-500">{error}</p>}
 
                     {/* 版本信息 */}
                     <motion.div variants={itemVariants} className="mb-8">
