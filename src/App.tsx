@@ -19,7 +19,7 @@ function App() {
             <Navbar/>
             <Routes>
                 <Route index element={<HomePage/>}/>
-                <Route path="download" element={<DownloadPage repository={"CubeWhyMC/celestial"}/>}/>
+                <Route path="download" element={<DownloadPage/>}/>
                 <Route path="weave" element={<WeaveIndexPage
                     dataSource={"https://raw.githubusercontent.com/CubeWhyMC/weave-index/refs/heads/master/index-by-developers.json"}/>}/>
                 <Route path="pineapple" element={<PineapplePage/>}/>
