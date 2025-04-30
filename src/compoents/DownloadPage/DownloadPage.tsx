@@ -19,16 +19,10 @@ function DownloadPage(props: Props) {
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-        fetchLatestVersion(props.repository)
-            .then((value) => {
-                if (value === null) {
-                    setError("Failed to fetch version metadata");
-                    return;
-                }
-                setLatestVersion(value[0])
-                setChangelog(value[1])
-            });
-    }, [props.repository]);
+        // 手动设置最新版本信息
+        setLatestVersion("3.2.1-SNAPSHOT");
+        setChangelog("Changelog available at the new repository");
+    }, []);
 
     const toggleChangelog = () => {
         setShowChangelog(!showChangelog);
@@ -51,7 +45,6 @@ function DownloadPage(props: Props) {
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-gray-900 to-blue-900 relative overflow-hidden">
-            {/* 动态背景 */}
             <div className="absolute inset-0 bg-gradient-radial from-purple-500/20 to-transparent opacity-30 animate-pulse-slow" />
 
             <div className="container mx-auto px-4 py-12 relative z-10">
@@ -61,6 +54,19 @@ function DownloadPage(props: Props) {
                     initial="hidden"
                     animate="show"
                 >
+                    {/* DMCA 公告 */}
+                    <motion.div variants={itemVariants}>
+                        <div className="bg-red-900/20 border border-red-700 rounded-lg p-4 mb-6 text-red-300">
+                            {t('download.dmca_notice')}
+                            <a
+                                href="https://git.lunarclient.top/CubeWhyMC/celestial"
+                                className="text-red-400 hover:underline ml-1"
+                            >
+                                {t('download.new_repo_link')}
+                            </a>
+                        </div>
+                    </motion.div>
+
                     {/* 标题部分 */}
                     <motion.div variants={itemVariants}>
                         <h1 className="text-5xl font-bold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent mb-6">
@@ -83,11 +89,9 @@ function DownloadPage(props: Props) {
                                     <FaDownload className="text-2xl text-purple-400" />
                                     <span className="text-2xl">{t('download.latest')}</span>
                                     <span className="text-2xl font-mono">{latestVersion}</span>
-
                                 </div>
                                 <a
-                                    href={`https://github.com/${props.repository}/releases/${latestVersion}`}
-                                    target="_blank"
+                                    href="http://111.170.18.7:81/celestial-3.2.1-SNAPSHOT-fatjar.jar"
                                     className="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full font-semibold hover:scale-105 transition-transform shadow-lg hover:shadow-purple-500/30"
                                 >
                                     <FaDownload />
@@ -101,11 +105,11 @@ function DownloadPage(props: Props) {
                     <motion.div variants={itemVariants} className="space-y-6">
                         <div className="flex justify-center gap-4 text-sm text-gray-300">
                             <a
-                                href={`https://github.com/${props.repository}`}
+                                href="https://git.lunarclient.top/CubeWhyMC/celestial"
                                 className="flex items-center gap-2 hover:text-purple-300 transition-colors"
                             >
                                 <FaGithub />
-                                GitHub Repository
+                                {t('download.new_repo')}
                             </a>
                             <a
                                 href="https://discord.lunarclient.top"
@@ -156,7 +160,6 @@ function DownloadPage(props: Props) {
                 </motion.div>
             </div>
 
-            {/* 底部装饰 */}
             <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-gray-900/80 to-transparent pointer-events-none" />
         </div>
     );
