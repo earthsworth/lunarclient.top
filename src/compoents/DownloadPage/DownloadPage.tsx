@@ -87,7 +87,7 @@ function DownloadPage() {
                                     <span className="text-2xl font-mono">{latestVersion}</span>
                                 </div>
                                 <a
-                                    href="http://111.170.18.7:81/celestial-3.2.1-SNAPSHOT-fatjar.jar"
+                                    href="https://pub-e7063cdf1d6a48229bdf5a5c3237b970.r2.dev/celestial-3.2.1-SNAPSHOT-fatjar.jar"
                                     className="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full font-semibold hover:scale-105 transition-transform shadow-lg hover:shadow-purple-500/30"
                                 >
                                     <FaDownload />
