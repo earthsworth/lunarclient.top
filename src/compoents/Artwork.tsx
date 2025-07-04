@@ -50,5 +50,5 @@ export const Artwork = () => {
 
     const [artwork, setArtwork] = useState(newRandomArtwork());
 
-    return <img className="fixed bottom-0 right-0 z-100 size-50 select-none" onClick={() => setArtwork(newRandomArtwork())} src={artwork} alt="artwork image"/>;
+    return <img className="fixed bottom-0 right-0 z-100 size-50 select-none cursor-pointer" onClick={() => setArtwork(newRandomArtwork())} src={artwork} alt="artwork image"/>;
 }
