@@ -23,6 +23,8 @@ export const Artwork = () => {
         if (currentArtworkId.current === id) {
             if (id === 11) {
                 id = 10;
+            } else if (id === 0) {
+                id = 1;
             } else {
                 id--;
             }
@@ -41,7 +43,7 @@ export const Artwork = () => {
             artwork10,
             artwork11,
             artwork12,
-        ]
+        ];
 
         currentArtworkId.current = id;
 
@@ -50,5 +52,6 @@ export const Artwork = () => {
 
     const [artwork, setArtwork] = useState(newRandomArtwork());
 
-    return <img className="fixed bottom-0 right-0 z-100 size-50 select-none cursor-pointer" onClick={() => setArtwork(newRandomArtwork())} src={artwork} alt="artwork image"/>;
+    return <img className="fixed bottom-0 right-0 z-100 size-50 select-none cursor-pointer"
+                onClick={() => setArtwork(newRandomArtwork())} src={artwork} alt="artwork image"/>;
 }
