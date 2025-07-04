@@ -29,7 +29,6 @@ ChartJS.register(
 
 interface UserStat {
     userCount: number;
-    webUserCount: number;
     onlineCount: number;
     timestamp: number;
 }
@@ -154,19 +153,7 @@ function AnalysisPage() {
                 pointHoverBorderWidth: 2,
                 pointHoverBackgroundColor: 'rgba(255, 255, 255, 0.8)',
                 fill: false,
-            },
-            {
-                label: t('analysis.web_users') || 'Web Users',
-                data: data.map((item) => item.webUserCount),
-                borderColor: 'rgba(255, 159, 64, 1)',
-                borderWidth: 2,
-                tension: 0.4,
-                pointRadius: 0,
-                pointHoverRadius: 6,
-                pointHoverBorderWidth: 2,
-                pointHoverBackgroundColor: 'rgba(255, 255, 255, 0.8)',
-                fill: false,
-            },
+            }
         ],
     };
 
@@ -261,11 +248,6 @@ function AnalysisPage() {
                             label={t('analysis.online_now') || 'Online Now'}
                             value={latestData?.onlineCount || 0}
                             color="rgb(153, 102, 255)"
-                        />
-                        <StatCard
-                            label={t('analysis.web_users') || 'Web Users'}
-                            value={latestData?.webUserCount || 0}
-                            color="rgb(255, 159, 64)"
                         />
                     </div>
                 </div>
