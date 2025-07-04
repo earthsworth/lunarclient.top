@@ -12,9 +12,11 @@ import RequireAuth from "./compoents/RequireAuth/RequireAuth.tsx";
 import DashboardLoginPage from "./compoents/DashboardLoginPage/DashboardLoginPage.tsx";
 import EULAPage from "./compoents/EULAPage/EULAPage.tsx";
 import BadlionCNPage from "./compoents/BadlionCN/BadlionCNPage.tsx"
+import {Artwork} from "./compoents/Artwork.tsx";
 
 function App() {
     return (<>
+        <Artwork/>
         <HashRouter>
             <Navbar/>
             <Routes>

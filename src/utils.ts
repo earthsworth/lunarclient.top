@@ -18,6 +18,10 @@ export async function fetchLatestVersion(repository: string): Promise<Array<stri
     }
 }
 
+export function getRandomInt(min: number, max: number): number {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 export function useTitle(title: string) {
     useEffect(() => {
       const prevTitle = document.title;
