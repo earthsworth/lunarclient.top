@@ -107,6 +107,7 @@ function SponsorPage() {
                 <SponsorInfo name="heermai" amount="￥15" description="" />
                 <SponsorInfo name="yuzhipang" amount="￥15" description="你们知不知道开挂是违法的。我已经报警了。你们就等着被抓吧。" />
                 <SponsorInfo name="MENHIX" amount="￥15" description="" />
+                <SponsorInfo name="他们朝我扔白菜" amount="￥15" description="" />
               </tbody>
             </table>
           </div>
