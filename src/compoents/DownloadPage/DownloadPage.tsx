@@ -56,7 +56,7 @@ function DownloadPage() {
                         <div className="bg-red-900/20 border border-red-700 rounded-lg p-4 mb-6 text-red-300">
                             {t('download.dmca_notice')}
                             <a
-                                href="https://git.lunarclient.top/CubeWhyMC/celestial"
+                                href="https://github.com/earthsworth/celestial-launcher"
                                 className="text-red-400 hover:underline ml-1"
                             >
                                 {t('download.new_repo_link')}
@@ -88,7 +88,7 @@ function DownloadPage() {
                                 </div>
                                 <a
                                     // href="https://pub-e7063cdf1d6a48229bdf5a5c3237b970.r2.dev/celestial-3.2.1-SNAPSHOT-fatjar.jar"
-                                    href="https://github.com/earthsworth/celestial-bootstrap"
+                                    href="https://github.com/earthsworth/celestial-bootstrap-next"
                                     className="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full font-semibold hover:scale-105 transition-transform shadow-lg hover:shadow-purple-500/30"
                                 >
                                     <FaDownload />
@@ -102,7 +102,7 @@ function DownloadPage() {
                     <motion.div variants={itemVariants} className="space-y-6">
                         <div className="flex justify-center gap-4 text-sm text-gray-300">
                             <a
-                                href="https://git.lunarclient.top/CubeWhyMC/celestial"
+                                href="https://github.com/earthsworth/celestial-launcher"
                                 className="flex items-center gap-2 hover:text-purple-300 transition-colors"
                             >
                                 <FaGithub />
